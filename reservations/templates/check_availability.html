@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check availability</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Check Availability of Room</h1>
+
+
+        <form id="form">
+            
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                <label class="label">Room</label>
+                </div>
+                <div class="field-body">
+                <div class="field is-fullwidth">
+                    <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="room" required>
+                        <option value="any">Any</option>
+                        {% for room in rooms %}
+                        <option value="{{room.id}}">{{room.title}}</option>
+                        {% empty %}
+                        <option disabled>No rooms avaliable at this time</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                <label class="label">Start & End Date</label>
+                </div>
+                <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded">
+                    <input required class="input" type="date" placeholder="Start Date" id="start_date">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control is-expanded">
+                    <input required class="input" type="date" id="end_date">
+                    </p>
+                </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label">
+                <!-- Left empty for spacing -->
+                </div>
+                <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                    <button class="button is-success" id="reserve-button">
+                        Submit
+                    </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <script src="{% static "check_availability.js" %}"></script>
+</body>
+</html>
